@@ -48,7 +48,12 @@ def login(driver):
     
     driver.save_screenshot("facebook_login.png")
     
-    driver.find_element_by_class_name("_5afe").click()
+    #--------------------------deal with "Turn on FacebookNotifications" popup
+    popup_txt = driver.find_element_by_css_selector("a.layerCancel._4jy0._4jy3._517h._51sy._42ft")
+    if (popup_txt.is_displayed()):
+        popup_txt.click()
+    
+    driver.find_element_by_class_name("_1vp5").click() #profile class name changes frequently   
     driver.save_screenshot("facebook_profile.png")
     return
  
